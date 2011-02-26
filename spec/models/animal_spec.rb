@@ -72,6 +72,12 @@ describe Animal do
   end # }}}
 
   describe '"types" validations' do # {{{
+    describe 'with no types' do
+      it 'is invalid' do
+        Animal.new(:types => []).should have_at_least(1).error_on :types
+      end
+    end
+
     describe 'with an invalid value' do # {{{
       it 'is invalid' do
         Animal.new(:types => [:invalid]).should have_at_least(1).error_on :types

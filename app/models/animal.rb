@@ -17,7 +17,10 @@ class Animal
   attr_accessible :name, :types
 
   validates :name,  :length  => {:in => 2..100}
-  validates :types, :subset  => {:in => @@valid_types}
+
+  validates :types,
+    :presence => true,
+    :subset  => {:in => @@valid_types}
 
   before_save :set_letter
 
