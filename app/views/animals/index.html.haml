@@ -3,8 +3,9 @@
 %table
   %tr
     %th Name
-    %th Type
+    %th Types
     %th Times Eaten
+    %th Approved
     %th 
     %th
     %th
@@ -12,8 +13,9 @@
   - @animals.each do |animal|
     %tr
       %td= animal.name
-      %td= animal.type
+      %td= animal.types.join ', '
       %td= animal.times_eaten
+      %td= animal.approved
       %td= link_to 'Show', animal
       %td= link_to 'Edit', edit_animal_path(animal)
       %td= link_to 'Destroy', animal, :confirm => 'Are you sure?', :method => :delete

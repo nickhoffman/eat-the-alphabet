@@ -14,9 +14,12 @@
     = f.text_field :name
 
   .field
-    = f.label :type
+    = f.label :types
     %br/
-    = f.text_field :type
+    - Animal.valid_types.each do |type|
+      = check_box_tag 'animal[types][]', type, @animal.types.include?(type)
+      = type
+      %br
 
   .actions
     = f.submit

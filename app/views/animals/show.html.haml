@@ -7,8 +7,10 @@
   = @animal.letter
 
 %p
-  %b Type:
-  = @animal.type
+  %b Types:
+  %ul
+    - @animal.types.each do |type|
+      %li= type
 
 %p
   %b Times Eaten:
