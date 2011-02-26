@@ -10,116 +10,201 @@ describe AnimalsController do
     @mock_animal ||= mock_model(Animal, stubs).as_null_object
   end
 
-  describe "GET index" do
-    it "assigns all animals as @animals" do
-      Animal.stub(:all) { [mock_animal] }
+  describe 'GET index' do # {{{
+    def do_action
       get :index
-      assigns(:animals).should eq([mock_animal])
     end
-  end
 
-  describe "GET show" do
-    it "assigns the requested animal as @animal" do
-      Animal.stub(:find).with("37") { mock_animal }
-      get :show, :id => "37"
+    it 'finds all animals' do
+      Animal.should_receive(:all).with(no_args).and_return [mock_animal]
+      do_action
+    end
+
+    it 'assigns all animals as @animals' do
+      Animal.stub(:all).and_return [mock_animal]
+      do_action
+      assigns(:animals).should == [mock_animal]
+    end
+  end # }}}
+
+  describe 'GET show' do # {{{
+    def do_action
+      get :show, :id => '1'
+    end
+
+    it 'finds the requested animal' do
+      Animal.should_receive(:find).with('1').and_return mock_animal
+      do_action
+    end
+
+    it 'assigns the requested animal as @animal' do
+      Animal.stub(:find).with('1').and_return mock_animal
+      do_action
       assigns(:animal).should be(mock_animal)
     end
-  end
+  end # }}}
 
-  describe "GET new" do
-    it "assigns a new animal as @animal" do
-      Animal.stub(:new) { mock_animal }
+  describe 'GET new' do # {{{
+    def do_action
       get :new
-      assigns(:animal).should be(mock_animal)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested animal as @animal" do
-      Animal.stub(:find).with("37") { mock_animal }
-      get :edit, :id => "37"
-      assigns(:animal).should be(mock_animal)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "assigns a newly created animal as @animal" do
-        Animal.stub(:new).with({'these' => 'params'}) { mock_animal(:save => true) }
-        post :create, :animal => {'these' => 'params'}
-        assigns(:animal).should be(mock_animal)
-      end
-
-      it "redirects to the created animal" do
-        Animal.stub(:new) { mock_animal(:save => true) }
-        post :create, :animal => {}
-        response.should redirect_to(animal_url(mock_animal))
-      end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved animal as @animal" do
-        Animal.stub(:new).with({'these' => 'params'}) { mock_animal(:save => false) }
-        post :create, :animal => {'these' => 'params'}
-        assigns(:animal).should be(mock_animal)
-      end
-
-      it "re-renders the 'new' template" do
-        Animal.stub(:new) { mock_animal(:save => false) }
-        post :create, :animal => {}
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested animal" do
-        Animal.stub(:find).with("37") { mock_animal }
-        mock_animal.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :animal => {'these' => 'params'}
-      end
-
-      it "assigns the requested animal as @animal" do
-        Animal.stub(:find) { mock_animal(:update_attributes => true) }
-        put :update, :id => "1"
-        assigns(:animal).should be(mock_animal)
-      end
-
-      it "redirects to the animal" do
-        Animal.stub(:find) { mock_animal(:update_attributes => true) }
-        put :update, :id => "1"
-        response.should redirect_to(animal_url(mock_animal))
-      end
+    it 'makes a new animal' do
+      Animal.should_receive(:new).with(no_args).and_return mock_animal
+      do_action
     end
 
-    describe "with invalid params" do
-      it "assigns the animal as @animal" do
-        Animal.stub(:find) { mock_animal(:update_attributes => false) }
-        put :update, :id => "1"
-        assigns(:animal).should be(mock_animal)
+    it 'assigns the new animal as @animal' do
+      Animal.stub(:new).and_return mock_animal
+      do_action
+      assigns(:animal).should be mock_animal
+    end
+  end # }}}
+
+  describe 'GET edit' do # {{{
+    def do_action
+      get :edit, :id => '1'
+    end
+
+    it 'finds the requested animal' do
+      Animal.should_receive(:find).with('1').and_return mock_animal
+      do_action
+    end
+
+    it 'assigns the requested animal as @animal' do
+      Animal.stub(:find).with('1').and_return mock_animal
+      do_action
+      assigns(:animal).should be mock_animal
+    end
+  end # }}}
+
+  describe 'POST create' do # {{{
+    def do_action(params = {})
+      post :create, :animal => {'these' => 'params'}.merge(params)
+    end
+
+    before :each do
+      Animal.stub(:new).with('these' => 'params').and_return mock_animal
+      mock_animal.stub(:save).and_return true
+    end
+
+    it 'makes a new animal' do
+      Animal.should_receive(:new).with('these' => 'params').and_return mock_animal
+      do_action
+    end
+
+    it 'assigns the new animal as @animal' do
+      do_action
+      assigns(:animal).should be mock_animal
+    end
+
+    it 'saves the the animal' do
+      mock_animal.should_receive(:save).and_return true
+      do_action
+    end
+
+    describe 'with valid params' do # {{{
+      it 'sets a flash notice' do
+        do_action
+        flash[:notice].should == 'Animal was successfully created.'
       end
 
-      it "re-renders the 'edit' template" do
-        Animal.stub(:find) { mock_animal(:update_attributes => false) }
-        put :update, :id => "1"
-        response.should render_template("edit")
+      it 'redirects to the created animal' do
+        do_action
+        response.should redirect_to mock_animal
       end
-    end
-  end
+    end # }}}
 
-  describe "DELETE destroy" do
-    it "destroys the requested animal" do
-      Animal.stub(:find).with("37") { mock_animal }
-      mock_animal.should_receive(:destroy)
-      delete :destroy, :id => "37"
+    describe 'with invalid params' do # {{{
+      it 're-renders the "new" template' do
+        mock_animal.stub(:save).and_return false
+        do_action
+        response.should render_template 'new'
+      end
+    end # }}}
+  end # }}}
+
+  describe 'PUT update' do # {{{
+    def do_action(params = {})
+      put :update, {:id => '1', :animal => {'these' => 'params'}}.merge(params)
     end
 
-    it "redirects to the animals list" do
-      Animal.stub(:find) { mock_animal }
-      delete :destroy, :id => "1"
-      response.should redirect_to(animals_url)
+    before :each do
+      Animal.stub(:find).with('1').and_return mock_animal
+      mock_animal.stub(:update_attributes).with('these' => 'params', 'types' => []).and_return true
     end
-  end
 
+    it 'finds the requested animal' do
+      Animal.should_receive(:find).with('1').and_return mock_animal
+      do_action
+    end
+
+    it 'assigns the animal as @animal' do
+      do_action
+      assigns(:animal).should be mock_animal
+    end
+
+    describe 'if params[:animal][:types] is nil' do # {{{
+      it 'sets it to []' do
+        do_action
+        controller.params[:animal][:types].should == []
+      end
+    end # }}}
+
+    it "updates the animal's attributes" do
+      mock_animal.should_receive(:update_attributes).with('these' => 'params', 'types' => []).and_return true
+      do_action
+    end
+
+    describe 'with valid params' do # {{{
+      it 'sets a flash notice' do
+        do_action
+        flash[:notice].should == 'Animal was successfully updated.'
+      end
+
+      it 'redirects to the animal' do
+        do_action
+        response.should redirect_to mock_animal
+      end
+    end # }}}
+
+    describe 'with invalid params' do # {{{
+      it 're-renders the "edit" template' do
+        mock_animal.stub(:update_attributes).and_return false
+        do_action
+        response.should render_template 'edit'
+      end
+    end # }}}
+  end # }}}
+
+  describe 'DELETE destroy' do # {{{
+    def do_action
+      delete :destroy, :id => '1'
+    end
+
+    before :each do
+      Animal.stub(:find).with('1').and_return mock_animal
+      mock_animal.stub(:destroy).and_return mock_animal
+    end
+
+    it 'finds the requested animal' do
+      Animal.should_receive(:find).with('1').and_return mock_animal
+      do_action
+    end
+
+    it 'assigns the requested animal as @animal' do
+      do_action
+      assigns(:animal).should be mock_animal
+    end
+
+    it 'destroys the requested animal' do
+      mock_animal.should_receive(:destroy).and_return mock_animal
+      do_action
+    end
+
+    it 'redirects to the animals list' do
+      do_action
+      response.should redirect_to animals_url
+    end
+  end # }}}
 end
