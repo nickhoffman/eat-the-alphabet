@@ -86,7 +86,7 @@ describe Animal do
 
     it 'accepts values in @@valid_types' do
       Animal.valid_types.each do |type|
-        Animal.new(:types => [type]).should have(0).errors_on :type
+        Animal.new(:types => [type]).should have(0).errors_on :types
       end
     end
   end # }}}
