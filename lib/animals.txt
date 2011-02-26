@@ -1,0 +1,213 @@
+aardvark,land
+abalone,water
+albatross,air
+alligator,water,land
+alpaca,land
+anchovy,water
+anemone,water
+anglerfish,water
+antelope,land
+ant,land
+armadillo,land
+baboon,land
+badger,land
+balloonfish,water
+barnacle,water
+barracuda,water
+bat,air
+bearded dragon,land
+bear,land
+beaver,land,water
+bee,air
+beetle,land
+beluga whale,water
+bison,land
+blue whale,water
+boa constrictor,land
+boar,land
+buffalo,land
+bullfrog,land,water
+butterfly,air
+camel,land
+capybara,land
+caribou,land
+carp,water
+cassowary,land
+caterpillar,land
+catfish,water
+cat,land
+centipede,land
+cheetah,land
+chickadee,air
+chicken,land
+chicken,land,air
+chimpanzee,land
+chinchilla,land
+chipmunk,land
+clam,water
+cobra,land
+cockatoo,air
+cockroach,land
+cod,water
+conch,water
+coral,water
+cougar,land
+cow,land
+coyote,land
+crab,water
+crane,air
+crayfish,land
+crayfish,water
+cricket,land
+crocodile,water,land
+crow,air
+cuttlefish,water
+deer,land
+dog,land
+dolphin fish,water
+dolphin,water
+duck,air,land,water
+eel,water
+elephant,land
+elephant seal,water
+flamingo,land,air
+fly,air
+flying fox,land,air
+fox,land
+frog,land,water
+gazelle,land
+gecko,land
+gharial,land,water
+gibbon,land
+gila monster,land
+giraffe,land
+goat,land
+goose,land,water,air
+gorilla,land
+gray whale,water
+great white shark,water
+grouper,water
+haddock,water
+halibut,water
+hammerhead shark,water
+hamster,land
+hare,land
+hawk,air
+hedgehog,land
+hermit crab,water
+heron,air
+herring,water
+hippopotamus,water,land
+honey bee,air
+hornet,air
+horsefly,air
+horse,land
+horseshoe crab,water
+housefly,air
+humpback whale,water
+hyena,land
+ibis,air
+iguana,land
+impala,land
+jabiru,air
+jackal,land
+jackrabbit,land
+jaguar,land
+jellyfish,water
+june bug,land
+kangaroo,land
+killer whale,water
+kingfisher,air
+koala,land
+kookaburra,air
+kudu,land
+lemur,land
+leopard,land
+leopard shark,water
+lionfish,water
+lion,land
+lizard,land
+llama,land
+lobster,water
+lorikeet,air
+macaw,air
+manatee,water
+monkey,land
+moth,air
+mouse,land
+mussel,water
+nautilus,water
+newt,water
+nudibranch,water
+nurse shark,water
+opossum,land
+orangutan,land
+orca,water
+ostrich,land
+owl,air
+panther,land
+parakeet,air
+parrot,air
+parrotfish,water
+pelican,air
+penguin,water
+pheasant,air
+pigeon,air
+pig,land
+pike,water
+pilot whale,water
+piranha,water
+porcupine,land
+porpoise,water
+possum,land
+pufferfish,water
+puffin,water
+quail,air
+rabbit,land
+raccoon,land
+rat,land
+rattlesnake,land
+ray,water
+rhinoceros,land
+rhino,land
+salamander,water
+sawfish,water
+scorpionfish,water
+scorpion,land
+sea bass,water
+seahorse,land
+sea horse,water
+sea lion,land
+seal,land
+seal,water
+shark,water
+sheep,land
+shrimp,water
+sloth,land
+snake,land
+spadefish,water
+sperm whale,water
+spider,land
+squirrel,land
+starfish,water
+stonefish,water
+swan,land,water,air
+tiger,land
+toad,land
+tortoise,land
+toucan,air
+tuna,water
+turtle,water,land
+urchin,water
+vulture,air
+walrus,water
+warthog,land
+whale shark,water
+whale,water
+wildebeest,land
+wolf,land
+worm,land
+yak,land
+zebrafish,water
+zebra,land
+zebu,land
