@@ -11,9 +11,9 @@ describe Animal do
 
   it 'stores valid "type" values in @@valid_types' do
     Animal.class_variable_get(:@@valid_types).should == [
-      :land,
-      :water,
-      :air,
+      'land',
+      'water',
+      'air',
     ]
   end
 

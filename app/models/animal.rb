@@ -3,9 +3,9 @@ class Animal
   include Mongoid::Timestamps
 
   @@valid_types = [
-    :land,
-    :water,
-    :air,
+    'land',
+    'water',
+    'air',
   ].freeze
 
   field :name,        :type => String
