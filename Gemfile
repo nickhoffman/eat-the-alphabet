@@ -8,6 +8,8 @@ gem 'mongoid',    :git => 'git://github.com/mongoid/mongoid.git'
 gem 'mongo_ext',  '~> 0.19'
 gem 'bson_ext',   '~> 1.2'
 
+gem 'haml-rails', '~> 0.3.4'
+
 group :development do
   gem 'wirble'
   gem 'utility_belt_r19'
