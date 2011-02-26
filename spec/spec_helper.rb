@@ -6,6 +6,8 @@ Spork.prefork do
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
 
+  require 'rails/mongoid'
+  Spork.trap_class_method Rails::Mongoid, :load_models
 end
 
 Spork.each_run do
@@ -31,12 +33,12 @@ Spork.each_run do
     config.mock_with :rspec
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
+    # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
     # instead of true.
-    config.use_transactional_fixtures = true
+    # config.use_transactional_fixtures = true
 
     config.include Mongoid::Matchers
   end
