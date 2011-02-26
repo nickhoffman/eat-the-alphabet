@@ -10,14 +10,14 @@ class Animal
 
   field :name,        :type => String
   field :letter,      :type => String
-  field :type,        :type => Symbol
+  field :types,       :type => Array,   :default => []
   field :times_eaten, :type => Integer, :default => 0
   field :approved,    :type => Boolean, :default => false
 
-  attr_accessible :name, :type
+  attr_accessible :name, :types
 
-  validates :name, :length    => {:in => 2..100}
-  validates :type, :inclusion => {:in => @@valid_types}
+  validates :name,  :length  => {:in => 2..100}
+  validates :types, :subset  => {:in => @@valid_types}
 
   before_save :set_letter
 

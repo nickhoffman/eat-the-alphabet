@@ -19,7 +19,7 @@ describe Animal do
 
   it { should have_field(:name).of_type String }
   it { should have_field(:letter).of_type String }
-  it { should have_field(:type).of_type Symbol }
+  it { should have_field(:types).of_type(Array).with_default_value_of [] }
   it { should have_field(:times_eaten).of_type(Integer).with_default_value_of 0 }
   it { should have_field(:approved).of_type(Boolean).with_default_value_of false }
 
@@ -32,8 +32,8 @@ describe Animal do
       Animal.new(:letter => 'x').letter.should_not == 'x'
     end
 
-    it 'allows "type" to be set' do
-      Animal.new(:type => :land).type.should equal :land
+    it 'allows "types" to be set' do
+      Animal.new(:types => [:land]).types.should == [:land]
     end
 
     it %q(doesn't allow "times_eaten" to be set) do
@@ -71,14 +71,18 @@ describe Animal do
     end # }}}
   end # }}}
 
-  describe '"type" validations' do # {{{
+  describe '"types" validations' do # {{{
     describe 'with an invalid value' do # {{{
       it 'is invalid' do
-        Animal.new(:type => :foo).should have_at_least(1).error_on :type
+        Animal.new(:types => [:invalid]).should have_at_least(1).error_on :types
       end
     end # }}}
 
-    it { should validate_inclusion_of(:type).to_allow Animal.valid_types }
+    it 'accepts values in @@valid_types' do
+      Animal.valid_types.each do |type|
+        Animal.new(:types => [type]).should have(0).errors_on :type
+      end
+    end
   end # }}}
 
   describe '.valid_types' do # {{{
