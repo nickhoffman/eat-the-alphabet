@@ -10,6 +10,7 @@ gem 'bson_ext',   '~> 1.2'
 
 group :development do
   gem 'wirble'
+  gem 'utility_belt_r19'
 end
 
 group :development, :test do

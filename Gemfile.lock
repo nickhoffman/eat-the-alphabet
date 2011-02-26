@@ -20,6 +20,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    Platform (0.4.0)
     abstract (1.0.0)
     actionmailer (3.0.4)
       actionpack (= 3.0.4)
@@ -48,6 +49,10 @@ GEM
       activesupport (= 3.0.4)
     activesupport (3.0.4)
     arel (2.0.9)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bson (1.2.4)
     bson_ext (1.2.4)
     builder (2.1.2)
@@ -105,8 +110,15 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    utility_belt (1.1.0)
+      Platform (>= 0.4.0)
+      aws-s3 (>= 0.4.0)
+      wirble (>= 0.1.2)
+    utility_belt_r19 (0.0.1)
+      utility_belt (= 1.1.0)
     will_paginate (3.0.pre2)
     wirble (0.1.3)
+    xml-simple (1.0.14)
 
 PLATFORMS
   ruby
@@ -120,4 +132,5 @@ DEPENDENCIES
   rails (= 3.0.4)
   rspec-rails (~> 2.5.0)
   spork (>= 0.9.0.rc4)
+  utility_belt_r19
   wirble
