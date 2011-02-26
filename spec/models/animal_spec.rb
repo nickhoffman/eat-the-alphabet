@@ -21,6 +21,7 @@ describe Animal do
   it { should have_field(:letter).of_type String }
   it { should have_field(:type).of_type Symbol }
   it { should have_field(:times_eaten).of_type(Integer).with_default_value_of 0 }
+  it { should have_field(:approved).of_type(Boolean).with_default_value_of false }
 
   describe 'field mass-assignment' do # {{{
     it 'allows "name" to be set' do
@@ -37,6 +38,10 @@ describe Animal do
 
     it %q(doesn't allow "times_eaten" to be set) do
       Animal.new(:times_eaten => 123).times_eaten.should_not be 123
+    end
+
+    it %q(doesn't allow "approved" to be set) do
+      Animal.new(:approved => true).approved.should_not be true
     end
   end # }}}
 

@@ -12,6 +12,7 @@ class Animal
   field :letter,      :type => String
   field :type,        :type => Symbol
   field :times_eaten, :type => Integer, :default => 0
+  field :approved,    :type => Boolean, :default => false
 
   attr_accessible :name, :type
 
