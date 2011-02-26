@@ -13,20 +13,19 @@ class AnimalImporter
 
     animals.each do |animal|
       animal.chomp!
-      name, type = animal.split /,/
+      name, *types = animal.split /,/
       name.downcase!
-      type = type.to_sym
 
       if Animal.where(:name => name).count > 0
-        puts "Skipping #{name} (#{type})"
+        puts "Skipping #{name} (#{types})"
         next
       end
 
-      new_animal          = Animal.new :name => name, :type => type
+      new_animal          = Animal.new :name => name, :types => types
       new_animal.approved = true
       new_animal.save
 
-      puts "Failed to create #{name} (#{type}): #{new_animal.errors}" unless new_animal.persisted?
+      puts "Failed to create #{name} (#{types}): #{new_animal.errors}" unless new_animal.persisted?
     end
   end
 end
