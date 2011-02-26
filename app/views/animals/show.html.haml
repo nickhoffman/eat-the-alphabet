@@ -1,0 +1,19 @@
+%p#notice= notice
+
+%h1= @animal.name
+
+%p
+  %b Letter:
+  = @animal.letter
+
+%p
+  %b Type:
+  = @animal.type
+
+%p
+  %b Times Eaten:
+  = @animal.times_eaten
+
+= link_to 'Edit', edit_animal_path(@animal)
+|
+= link_to 'Back', animals_path
